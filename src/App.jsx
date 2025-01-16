@@ -5,17 +5,10 @@ import { GetRandomFact } from './GetRandomFact';
 //  const CAT_API = `https://catfact.ninja/fact`
 //  const PRE_CAT_API = `https://cataas.com/cat/says/`
 
-function App() {
-  const [fact, setCatFact] = useState()
+function useCatImage ({ fact }){
   const [imageUrl, setImageUrl] = useState()
-      
-  useEffect(() =>
-   {GetRandomFact().then(setCatFact)} ,
-  [])
 
   useEffect(()=>{ 
-
-
     if(!fact) return
 
     const word = fact.split(' ', 1)[0]
@@ -28,8 +21,15 @@ function App() {
       })
     },[fact])
 
+    return { imageUrl }
+}
+
+function App() {
+  const [fact, setCatFact] = useState()
+  const { imageUrl } = useCatImage({ fact })
+
   const handleClick = () => {
-    GetRandomFact().then(setCatFact)
+    GetRandomFact().then(setCatFact);
   }
 
   return (
