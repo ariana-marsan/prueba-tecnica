@@ -8,7 +8,7 @@ function App() {
   const [fact, setCatFact] = useState()
   const [imageUrl, setImageUrl] = useState()
 
-  useEffect(() => {
+  const getRandomFact = () => {
     fetch (CAT_API)
     .then(res => res.json())
     .then(data => {
@@ -26,13 +26,16 @@ function App() {
         setImageUrl(url)
       })
     })
-  }, [])
+  }
+
+  useEffect(getRandomFact, [])
 
   return (
     <div className="App">
       <header>
          App de Gatitos
       </header>
+      <button onClick={getRandomFact}>refresh</button>
       <p>{fact}</p>
       <img src={`${imageUrl}`} alt="cat" /> {console.log(`${imageUrl}`)}
     </div>

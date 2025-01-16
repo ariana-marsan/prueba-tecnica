@@ -9,3 +9,10 @@
   padding: 2rem;
   font-size: 2rem;
 }
+
+button{
+  padding: .6rem 1.3rem;
+  background-color: #c11;
+  border: 1px solid #c61;
+  border-radius: 4px;
+}
