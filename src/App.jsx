@@ -1,35 +1,15 @@
-import { useEffect, useState } from 'react';
+
 import './App.css';
-import { GetRandomFact } from './GetRandomFact';
+import { useCatImage } from './hooks/useCatImage';
+import { useRandomFact } from './hooks/useRandomFact';
 
-//  const CAT_API = `https://catfact.ninja/fact`
-//  const PRE_CAT_API = `https://cataas.com/cat/says/`
-
-function useCatImage ({ fact }){
-  const [imageUrl, setImageUrl] = useState()
-
-  useEffect(()=>{ 
-    if(!fact) return
-
-    const word = fact.split(' ', 1)[0]
-
-    fetch (`https://cataas.com/cat/says/${word}?fontSize=50&fontColor=red`)
-      .then(res => {
-        const url  = res.url
-        console.log(url)
-        setImageUrl(url)
-      })
-    },[fact])
-
-    return { imageUrl }
-}
 
 function App() {
-  const [fact, setCatFact] = useState()
+  const { fact, randomFact } = useRandomFact()
   const { imageUrl } = useCatImage({ fact })
 
   const handleClick = () => {
-    GetRandomFact().then(setCatFact);
+    randomFact();
   }
 
   return (
@@ -39,7 +19,7 @@ function App() {
       </header>
       <button onClick={handleClick}>refresh</button>
       <p>{fact}</p>
-      <img src={`${imageUrl}`} alt="cat" /> {console.log(`${imageUrl}`)}
+      <img src={`${imageUrl}`} alt="cat" />
     </div>
   );
 }
