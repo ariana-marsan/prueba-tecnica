@@ -16,3 +16,9 @@ button{
   border: 1px solid #c61;
   border-radius: 4px;
 }
+button:hover{
+  padding: .6rem 1.3rem;
+  background-color: #b11;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
